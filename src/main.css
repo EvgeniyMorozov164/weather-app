@@ -23,11 +23,51 @@
 }
 
 :root {
-  --main-bg-clr: #000;
+  --main-bg-clr: #4c8697;
   --scd-bg-clr: #fff;
   --main-clr: #000;
 }
 
 body {
+  font-family: roboto-regular, sans-serif;
   background-color: var(--main-bg-clr);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5px;
+}
+
+.header,
+.footer {
+  width: 100%;
+  max-width: 1440px;
+  height: 100px;
+  background-color: var(--scd-bg-clr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.logo h1 {
+  font-size: 3rem;
+}
+
+.logo h1:first-letter {
+  color: rgb(243, 13, 32);
+}
+
+
+
+.footer {
+  padding: 0px 20px;
+  justify-content: space-between;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--main-clr);
 }
