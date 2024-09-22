@@ -53,15 +53,89 @@ body {
 }
 
 .logo h1 {
+  font-family: orbitron-regular, sans-serif;
   font-size: 3rem;
 }
 
 .logo h1:first-letter {
-  color: rgb(243, 13, 32);
+  color: rgb(70, 243, 108);
 }
 
+.main {
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: var(--scd-bg-clr);
+  border-radius: 10px;
+  padding: 0px 20px;
+}
 
+.form-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
 
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;  
+}
+
+.label {
+  font-size: 1.1rem;
+}
+
+.input {
+  border: none;
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 0px 5px;
+  text-align: center;
+}
+
+.input::placeholder {
+  text-align: center;
+}
+
+.input:focus {
+  border: 1px solid rgb(70, 243, 108);
+  outline: none;
+  background-color: var(--scd-bg-clr);
+}
+
+.btn {
+  font-family: roboto-regular, sans-serif;
+  background-color: var(--main-bg-clr);
+  color: var(--scd-bg-clr);
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  transition: all .3s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.btn:active {
+  color: rgb(70, 243, 108);
+}
 .footer {
   padding: 0px 20px;
   justify-content: space-between;
