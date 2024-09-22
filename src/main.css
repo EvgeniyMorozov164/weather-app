@@ -1,4 +1,33 @@
+@font-face {
+  font-family: roboto-regular;
+  src: url("../components/my-components/fonts/main_font/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: roboto-italic;
+  src: url("../components/my-components/fonts/main_font/Roboto-Italic.ttf");
+}
+
+@font-face {
+  font-family: roboto-bold;
+  src: url("../components/my-components/fonts/main_font/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: orbitron-regular;
+  src: url("../components/my-components/fonts/logo/Orbitron-Regular.ttf");
+}
+
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --main-bg-clr: #000;
+  --scd-bg-clr: #fff;
+  --main-clr: #000;
+}
+
+body {
+  background-color: var(--main-bg-clr);
+}

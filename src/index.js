@@ -6,5 +6,5 @@ console.log("Hello from webpack");
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();
-  getForecast();
+  getForecast();  
 });
