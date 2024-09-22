@@ -7,5 +7,6 @@ console.log("Hello from webpack");
 getDate(".date");
 btn.addEventListener("click", (e) => {
   e.preventDefault();
-  getForecast();  
+  getForecast();    
 });
+

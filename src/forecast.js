@@ -8,8 +8,7 @@ const getForecast = async () => {
 
   const request = await fetch(url);
   const data = await request.json();
-
-  console.log(data);
+   console.log(data);
   return data;
 }
 
