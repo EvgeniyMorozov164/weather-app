@@ -44,7 +44,7 @@ body {
 .header,
 .footer {
   width: 100%;
-  max-width: 1440px;
+  max-width: 520px;
   height: 100px;
   background-color: var(--scd-bg-clr);
   display: flex;
@@ -64,7 +64,7 @@ body {
 
 .main {
   width: 100%;
-  max-width: 1440px;
+  max-width: 520px;
   height: auto;
   display: flex;
   flex-direction: column;
