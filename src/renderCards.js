@@ -27,13 +27,14 @@ const renderTodayCard = async (fn) => {
     "23:00": data.days[0].hours[23],
   };
 
-  console.log(todayCard);
-  console.log(todayCardHrs);
+  // console.log(todayCard);
+  // console.log(todayCardHrs);
   createCard(todayCard, todayCardHrs);
 }
 
 const createCard = (day, hrs) => {
-
+  console.log(day);
+  console.log(hrs);
   // TODAY CARD
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("card-today");
@@ -105,6 +106,14 @@ const createCard = (day, hrs) => {
   const visP = document.createElement("p");
   visP.textContent = `visibility ${day.visibility}`;
   otherCon.appendChild(visP);
+
+  // TODAY HOURS
+
+  const hrsDiv = document.createElement("div");
+  hrsDiv.classList.add("hrs-con");
+  cardDiv.appendChild(hrsDiv);
+
+  createHrCard(hrs, hrsDiv);
 }
 
 const getDay = (date) => {
@@ -180,5 +189,35 @@ const getDay = (date) => {
   }
 
   return `${month} ${getDate}, ${weekDay}`;
+}
+
+const createHrCard = (obj, parent) => {
+  let timeCount = 4;
+  for (let key in obj) {
+    console.log(obj[key])
+    const hrDiv = document.createElement("div");
+    hrDiv.classList.add("hr-con");
+    parent.appendChild(hrDiv);
+
+    const timeP = document.createElement("p");
+    timeP.textContent = timeCount < 10 ? `0${timeCount}:00` : `${timeCount}:00`;
+    timeCount += 4;
+
+    if (timeCount === 24) {
+      timeCount = 23;
+    }
+
+    hrDiv.appendChild(timeP);
+
+    const iconCon = document.createElement("img");
+    iconCon.setAttribute("src", `./svg/weather/${obj[key].icon}.svg`);
+    iconCon.setAttribute("alt", `${obj[key].icon}`);
+    iconCon.classList.add("hr-pic");
+    hrDiv.appendChild(iconCon);
+
+    const hrTemp = document.createElement("p");
+    hrTemp.textContent = obj[key].temp;
+    hrDiv.appendChild(hrTemp);
+  }
 }
 export { renderTodayCard };
