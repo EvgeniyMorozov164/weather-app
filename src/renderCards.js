@@ -4,7 +4,7 @@ const content = document.querySelector(".content");
 
 const renderTodayCard = async (fn) => {
   const data = await fn();
-  
+  console.log(data);
   const todayCard = {
     address: data.resolvedAddress,
     datetime: data.days[0].datetime,
@@ -25,16 +25,12 @@ const renderTodayCard = async (fn) => {
     "16:00": data.days[0].hours[16],
     "20:00": data.days[0].hours[20],
     "23:00": data.days[0].hours[23],
-  };
-
-  // console.log(todayCard);
-  // console.log(todayCardHrs);
+  };  
+  content.textContent = "";
   createCard(todayCard, todayCardHrs);
 }
 
-const createCard = (day, hrs) => {
-  console.log(day);
-  console.log(hrs);
+const createCard = (day, hrs) => { 
   // TODAY CARD
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("card-today");
@@ -47,7 +43,7 @@ const createCard = (day, hrs) => {
 
   const h3 = document.createElement("h3");
   h3.classList.add("heading-3");
-  h3.textContent = getDay(day.datetime);
+  h3.textContent = getDay(day.datetime, false);
   cardDiv.appendChild(h3);
 
   const curConDiv = document.createElement("div");
@@ -116,7 +112,7 @@ const createCard = (day, hrs) => {
   createHrCard(hrs, hrsDiv);
 }
 
-const getDay = (date) => {
+const getDay = (date, bool) => {  
   let getDate = new Date(date).getDate();
   let weekDay = new Date(date).getDay();
   let month = new Date(date).getMonth();
@@ -187,14 +183,20 @@ const getDay = (date) => {
     default:
     month = "-";
   }
-
-  return `${month} ${getDate}, ${weekDay}`;
+  
+  if (bool === false) {
+    return `${month} ${getDate}, ${weekDay}`;
+  } else if (bool === true) {
+    return `${getDate}, ${weekDay}`;
+  }
+  
 }
 
 const createHrCard = (obj, parent) => {
   let timeCount = 4;
+
   for (let key in obj) {
-    console.log(obj[key])
+    
     const hrDiv = document.createElement("div");
     hrDiv.classList.add("hr-con");
     parent.appendChild(hrDiv);
@@ -220,4 +222,45 @@ const createHrCard = (obj, parent) => {
     hrDiv.appendChild(hrTemp);
   }
 }
-export { renderTodayCard };
+
+const renderDaysCards = async (fn) =>{
+  const data = await fn();
+  
+  const daysCards = [];
+
+  for (let i = 1; i < data.days.length; i++) {
+    daysCards.push(data.days[i]);
+  }  
+  createDaysCards(daysCards);
+}
+
+const createDaysCards = (days) => {
+  const daysDiv = document.createElement("div");
+  daysDiv.classList.add("cards-days");
+  content.appendChild(daysDiv);
+  createMiniDayCard(days, daysDiv);
+}
+
+const createMiniDayCard = (days, parent) => {
+  
+  for (let i = 0; i < days.length; i++) {
+    const miniDayDiv = document.createElement("div");
+    miniDayDiv.classList.add("card-mini-day");
+    parent.appendChild(miniDayDiv);
+
+    const dayP = document.createElement("p");
+    dayP.textContent = getDay(`${days[i]["datetime"]}`, true);
+    miniDayDiv.appendChild(dayP);
+
+    const miniDayIcon = document.createElement("img");
+    miniDayIcon.classList.add("mini-card-cond");
+    miniDayIcon.setAttribute("src", `./svg/weather/${days[i]["icon"]}.svg`);
+    miniDayIcon.setAttribute("alt", `${days[i]["icon"]}`);
+    miniDayDiv.appendChild(miniDayIcon);
+
+    const miniDayT = document.createElement("p");
+    miniDayT.textContent = `${days[i]["temp"]}`;
+    miniDayDiv.appendChild(miniDayT);
+  }
+}
+export { renderTodayCard, renderDaysCards };
