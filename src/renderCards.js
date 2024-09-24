@@ -60,6 +60,8 @@ const createCard = (day, hrs) => {
   const icon = document.createElement("img");
   icon.classList.add("cur-pic");
   icon.setAttribute("src", `./svg/weather/${day.icon}.svg`);
+  icon.setAttribute("title", `${day.icon}`);
+  icon.setAttribute("alt", `${day.icon}`);
   div.appendChild(icon);
 
   const tempP = document.createElement("p");
@@ -214,6 +216,7 @@ const createHrCard = (obj, parent) => {
     const iconCon = document.createElement("img");
     iconCon.setAttribute("src", `./svg/weather/${obj[key].icon}.svg`);
     iconCon.setAttribute("alt", `${obj[key].icon}`);
+    iconCon.setAttribute("title", `${obj[key].icon}`);
     iconCon.classList.add("hr-pic");
     hrDiv.appendChild(iconCon);
 
@@ -256,6 +259,7 @@ const createMiniDayCard = (days, parent) => {
     miniDayIcon.classList.add("mini-card-cond");
     miniDayIcon.setAttribute("src", `./svg/weather/${days[i]["icon"]}.svg`);
     miniDayIcon.setAttribute("alt", `${days[i]["icon"]}`);
+    miniDayIcon.setAttribute("title", `${days[i]["icon"]}`);
     miniDayDiv.appendChild(miniDayIcon);
 
     const miniDayT = document.createElement("p");
