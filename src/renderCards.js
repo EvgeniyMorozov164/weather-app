@@ -4,7 +4,7 @@ const content = document.querySelector(".content");
 
 const renderTodayCard = async (fn) => {
   const data = await fn();
-  console.log(data);
+  
   const todayCard = {
     address: data.resolvedAddress,
     datetime: data.days[0].datetime,
@@ -65,7 +65,8 @@ const createCard = (day, hrs) => {
   div.appendChild(icon);
 
   const tempP = document.createElement("p");
-  tempP.textContent = day.temp;
+  tempP.textContent = day.temp + "F";
+  tempP.classList.add("temp");
   curTempDiv.appendChild(tempP);
 
   const curState = document.createElement("div");
@@ -82,7 +83,8 @@ const createCard = (day, hrs) => {
   curState.appendChild(curConP);
 
   const feelsP = document.createElement("p");
-  feelsP.textContent = `Feels like ${day.feelslike}`;
+  feelsP.textContent = `Feels like ${day.feelslike}F`;
+  feelsP.classList.add("feel-temp");
   curState.appendChild(feelsP);
 
   const otherCon = document.createElement("div");
@@ -221,7 +223,8 @@ const createHrCard = (obj, parent) => {
     hrDiv.appendChild(iconCon);
 
     const hrTemp = document.createElement("p");
-    hrTemp.textContent = obj[key].temp;
+    hrTemp.textContent = obj[key].temp + "F";
+    hrTemp.classList.add("temp");
     hrDiv.appendChild(hrTemp);
   }
 }
@@ -263,8 +266,10 @@ const createMiniDayCard = (days, parent) => {
     miniDayDiv.appendChild(miniDayIcon);
 
     const miniDayT = document.createElement("p");
-    miniDayT.textContent = `${days[i]["temp"]}`;
+    miniDayT.textContent = `${days[i]["temp"]}F`;
+    miniDayT.classList.add("temp");
     miniDayDiv.appendChild(miniDayT);
   }
 }
+
 export { renderTodayCard, renderDaysCards };

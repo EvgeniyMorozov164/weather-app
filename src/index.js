@@ -3,6 +3,7 @@ import "./main.css";
 import { form, getForecast } from "./forecast";
 import { getDate } from "./date";
 import { renderTodayCard, renderDaysCards } from "./renderCards";
+import { convertBtn, convertT } from "./converter";
 
 console.log("Hello from webpack");
 
@@ -14,3 +15,10 @@ form.addEventListener("submit", (e) => {
   renderDaysCards(getForecast);   
 });
 
+convertBtn.addEventListener("click", () => {
+  convertT();
+});
+
+// document.addEventListener("click", (e) => {
+//   console.log(e.target);
+// })
