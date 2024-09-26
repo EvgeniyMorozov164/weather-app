@@ -27,6 +27,7 @@ const getForecast = async () => {
     return data;
     }    
   } catch (error) {
+    status = false;
     document.querySelector(".content").textContent = error.message;     
   }
 }
