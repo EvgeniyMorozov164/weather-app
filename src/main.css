@@ -186,6 +186,7 @@ body {
 }
 
 .cur-temp {
+  width: 144px;
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -223,8 +224,9 @@ body {
 }
 
 .hr-con {
+  width: 44px;
   display: grid;
-  justify-content: center;
+  justify-items: center;
 }
 
 .hr-pic {
