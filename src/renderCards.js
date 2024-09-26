@@ -3,31 +3,36 @@ import { getForecast } from "./forecast";
 const content = document.querySelector(".content");
 
 const renderTodayCard = async (fn) => {
-  const data = await fn();
+  try {
+    const data = await fn();
   
-  const todayCard = {
-    address: data.resolvedAddress,
-    datetime: data.days[0].datetime,
-    condition: data.currentConditions.conditions,
-    icon: data.currentConditions.icon,
-    feelslike: data.currentConditions.feelslike,
-    humidity: data.currentConditions.humidity,
-    pressure: data.currentConditions.pressure,
-    windspeed: data.currentConditions.windspeed,
-    visibility: data.days[0].visibility,
-    temp: data.currentConditions.temp,
-  };
-
-  const todayCardHrs = {
-    "04:00": data.days[0].hours[4],
-    "08:00": data.days[0].hours[8],
-    "12:00": data.days[0].hours[12],
-    "16:00": data.days[0].hours[16],
-    "20:00": data.days[0].hours[20],
-    "23:00": data.days[0].hours[23],
-  };  
-  content.textContent = "";
-  createCard(todayCard, todayCardHrs);
+    const todayCard = {
+      address: data.resolvedAddress,
+      datetime: data.days[0].datetime,
+      condition: data.currentConditions.conditions,
+      icon: data.currentConditions.icon,
+      feelslike: data.currentConditions.feelslike,
+      humidity: data.currentConditions.humidity,
+      pressure: data.currentConditions.pressure,
+      windspeed: data.currentConditions.windspeed,
+      visibility: data.days[0].visibility,
+      temp: data.currentConditions.temp,
+    };
+  
+    const todayCardHrs = {
+      "04:00": data.days[0].hours[4],
+      "08:00": data.days[0].hours[8],
+      "12:00": data.days[0].hours[12],
+      "16:00": data.days[0].hours[16],
+      "20:00": data.days[0].hours[20],
+      "23:00": data.days[0].hours[23],
+    };  
+    content.textContent = "";
+    createCard(todayCard, todayCardHrs);
+  } catch (error) {
+    console.log(error.message);
+  }
+ 
 }
 
 const createCard = (day, hrs) => { 
@@ -230,7 +235,8 @@ const createHrCard = (obj, parent) => {
 }
 
 const renderDaysCards = async (fn) =>{
-  const data = await fn();
+  try {
+    const data = await fn();
   
   const daysCards = [];
 
@@ -238,6 +244,10 @@ const renderDaysCards = async (fn) =>{
     daysCards.push(data.days[i]);
   }  
   createDaysCards(daysCards);
+  } catch (error) {
+    console.log(error.message);
+  }
+  
 }
 
 const createDaysCards = (days) => {
