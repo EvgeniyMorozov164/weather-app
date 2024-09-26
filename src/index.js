@@ -12,7 +12,10 @@ getDate(".date");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   renderTodayCard(getForecast); 
-  renderDaysCards(getForecast);   
+  renderDaysCards(getForecast); 
+  if (convertBtn.textContent === "convert to fahrenheit".toUpperCase()){
+    convertBtn.textContent = "convert to celsius".toUpperCase()
+  }  
 });
 
 convertBtn.addEventListener("click", () => {
