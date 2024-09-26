@@ -8,12 +8,10 @@ const getForecast = async () => {
 
   const request = await fetch(url);  
   const data = await request.json();  
-  
+  console.log(data);
   return data;
 }
 
 
-// const showError = () => {
 
-// }
 export { form, getForecast };

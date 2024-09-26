@@ -10,7 +10,10 @@ const convertT = () => {
       temp = convertToCel(temp);
       para.textContent = `${temp}C`;
     })    
-    paraFeel.textContent = `Feels like ${document.querySelector("div.cur-temp").lastChild.textContent}`;
+    let str = paraFeel.textContent;
+    let temp = getTemp(str);
+    temp = convertToCel(temp);
+    paraFeel.textContent = `Feels like ${temp}C`;
     convertBtn.textContent = "Convert to Fahrenheit";
   } else {
     paras.forEach(para => {
@@ -19,7 +22,10 @@ const convertT = () => {
       temp = convertToFahr(temp);
       para.textContent = `${temp}F`;
     })    
-    paraFeel.textContent = `Feels like ${document.querySelector("div.cur-temp").lastChild.textContent}`;
+    let str = paraFeel.textContent;
+    let temp = getTemp(str);
+    temp = convertToFahr(temp);
+    paraFeel.textContent = `Feels like ${temp}F`;
     
     convertBtn.textContent = "Convert to Celsius";
   }
@@ -27,19 +33,36 @@ const convertT = () => {
 }
 
 const getTemp = (str) => {
-  let temp = parseFloat(str.replace((/\[A-z]/g), ""));  
+  let temp = "";
+  if (str[0] === "F") {
+    temp = str.split("").splice(11).join("");
+    return parseFloat(temp.replace((/\[A-z]/g), ""));
+  }
+  temp = parseFloat(str.replace((/\[A-z]/g), ""));  
   return temp;
 }
 
 const convertToCel = (num) => {
-  const cel = (((num - 32) * 5) / 9).toFixed(1);
- 
-  return cel;
+  let temp = (((num - 32) * 5) / 9).toFixed(1);
+  temp = temp.toString().split("");
+
+if (temp[temp.length - 1] === "0" && temp[temp.length - 2] === ".") {
+  temp.pop();
+  temp.pop();
+}
+temp = +temp.join("")
+  return temp;
 }
 
 const convertToFahr = (num) => {
-  const cel = (num * (9 / 5) + 32).toFixed(1);
-  
-  return cel;
+  let temp = (num * (9 / 5) + 32).toFixed(1);
+  temp = temp.toString().split("");
+
+if (temp[temp.length - 1] === "0" && temp[temp.length - 2] === ".") {
+  temp.pop();
+  temp.pop();
+}
+temp = +temp.join("")
+  return temp;
 }
 export { convertBtn, convertT };
