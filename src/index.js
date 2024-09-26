@@ -10,7 +10,7 @@ console.log("Hello from webpack");
 getDate(".date");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  e.preventDefault();  
   renderTodayCard(getForecast); 
   renderDaysCards(getForecast); 
   if (convertBtn.textContent === "convert to fahrenheit".toUpperCase()){

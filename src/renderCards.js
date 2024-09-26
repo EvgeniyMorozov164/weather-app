@@ -1,11 +1,12 @@
-import { getForecast } from "./forecast";
+import { loader } from "./loader";
 
 const content = document.querySelector(".content");
 
 const renderTodayCard = async (fn) => {
   try {
+    loader(true);
     const data = await fn();
-  
+    loader(false);
     const todayCard = {
       address: data.resolvedAddress,
       datetime: data.days[0].datetime,
@@ -29,6 +30,7 @@ const renderTodayCard = async (fn) => {
     };  
     content.textContent = "";
     createCard(todayCard, todayCardHrs);
+    
   } catch (error) {
     console.log(error.message);
   }

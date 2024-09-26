@@ -7,8 +7,9 @@ const getForecast = async () => {
   const location = input.value;
   const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${API_KEY}`;
   
-  try {
+  try {   
     const request = await fetch(url);  
+
     if (request.status === 400) {      
       throw new Error("BAD_REQUEST- The format of the API is incorrect or an invalid parameter or combination of parameters was supplied");      r
     } else if (request.status === 401) {
@@ -21,10 +22,10 @@ const getForecast = async () => {
       throw new Error("500 INTERNAL_SERVER_ERROR – A general error has occurred processing the request.");
     } else {
     status = true;
-    const data = await request.json(); 
+    const data = await request.json();
+
     return data;
-    }
-    
+    }    
   } catch (error) {
     document.querySelector(".content").textContent = error.message;     
   }
