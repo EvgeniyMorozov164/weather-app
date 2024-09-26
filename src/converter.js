@@ -3,7 +3,7 @@ const convertBtn = document.querySelector(".converter");
 const convertT = () => {
   const paras = document.querySelectorAll("p.temp");
   const paraFeel = document.querySelector("p.feel-temp");
-  if (convertBtn.textContent.includes("Celsius")) {
+  if (convertBtn.textContent.includes("Celsius".toUpperCase())) {
     paras.forEach(para => {
       let str = para.textContent;    
       let temp = getTemp(str);
@@ -14,7 +14,7 @@ const convertT = () => {
     let temp = getTemp(str);
     temp = convertToCel(temp);
     paraFeel.textContent = `Feels like ${temp}C`;
-    convertBtn.textContent = "Convert to Fahrenheit";
+    convertBtn.textContent = "Convert to Fahrenheit".toUpperCase();
   } else {
     paras.forEach(para => {
       let str = para.textContent;    
@@ -27,7 +27,7 @@ const convertT = () => {
     temp = convertToFahr(temp);
     paraFeel.textContent = `Feels like ${temp}F`;
     
-    convertBtn.textContent = "Convert to Celsius";
+    convertBtn.textContent = "Convert to Celsius".toUpperCase();
   }
   
 }

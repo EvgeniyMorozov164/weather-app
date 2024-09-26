@@ -1,13 +1,14 @@
 const input = document.querySelector(".input");
 const form = document.querySelector(".form");
 
+let status = false;
 const getForecast = async () => {
   const API_KEY = "RGKYDRSS7BK7AE6DXH4NEADXJ";
   const location = input.value;
   const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${API_KEY}`;
-  const request = await fetch(url);  
+  
   try {
-    
+    const request = await fetch(url);  
     if (request.status === 400) {      
       throw new Error("BAD_REQUEST- The format of the API is incorrect or an invalid parameter or combination of parameters was supplied");      r
     } else if (request.status === 401) {
@@ -19,8 +20,8 @@ const getForecast = async () => {
     } else if (request.status === 500) {
       throw new Error("500 INTERNAL_SERVER_ERROR – A general error has occurred processing the request.");
     } else {
-      
-      const data = await request.json(); 
+    status = true;
+    const data = await request.json(); 
     return data;
     }
     
@@ -29,4 +30,4 @@ const getForecast = async () => {
   }
 }
 
-export { form, getForecast };
+export { form, getForecast, status };

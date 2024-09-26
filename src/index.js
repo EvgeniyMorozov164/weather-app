@@ -1,6 +1,6 @@
 import "./reset.css";
 import "./main.css";
-import { form, getForecast } from "./forecast";
+import { form, getForecast,status } from "./forecast";
 import { getDate } from "./date";
 import { renderTodayCard, renderDaysCards } from "./renderCards";
 import { convertBtn, convertT } from "./converter";
@@ -16,9 +16,9 @@ form.addEventListener("submit", (e) => {
 });
 
 convertBtn.addEventListener("click", () => {
+  if (!status) {
+    return;
+  }
   convertT();
 });
 
-// document.addEventListener("click", (e) => {
-//   console.log(e.target);
-// })
