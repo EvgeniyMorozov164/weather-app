@@ -78,7 +78,7 @@ body {
 
 .form-container {
   width: 100%;
-  height: 150px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,6 +139,21 @@ body {
 
 .btn:active {
   color: rgb(70, 243, 108);
+}
+
+.converter { 
+  color: black;
+  background-color: var(--scd-bg-clr);
+  border: 1px solid black;
+}
+
+.converter:hover {
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.converter:active {
+  box-shadow: none;
 }
 
 .content {
